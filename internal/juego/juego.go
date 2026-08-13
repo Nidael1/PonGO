@@ -1,6 +1,7 @@
 package juego
 
 import (
+	"github.com/Nidael1/PonGO/internal/audio"
 	"github.com/Nidael1/PonGO/internal/entrada"
 	"github.com/Nidael1/PonGO/internal/render"
 	"github.com/Nidael1/PonGO/internal/rival"
@@ -35,12 +36,14 @@ type Juego struct {
 	bola           Bola
 	marcador       Marcador
 	ultimoMarcador [2]int
+	audio          *audio.Audio
 }
 
 func Nuevo() *Juego {
 	return &Juego{
 		estado: estadoSeleccion,
 		nivel:  1,
+		audio:  audio.Nueva(),
 	}
 }
 
@@ -94,6 +97,7 @@ func (j *Juego) updateEnJuego() {
 	j.verificarPunto()
 }
 
+
 func (j *Juego) moverRival() {
 	bolaCentroY := j.bola.Y + TamBola/2
 	rivalCentroY := j.palRival.Y + AltoPaleta/2
@@ -103,28 +107,27 @@ func (j *Juego) moverRival() {
 }
 
 func (j *Juego) verificarPunto() {
-	anotó := false
 	if j.bola.X+TamBola < 0 {
 		j.marcador.Rival++
-		anotó = true
+		j.audio.PlayPunto()
 		if !j.verificarFin() {
 			j.lanzarBola(1)
 		}
 	}
 	if j.bola.X > AnchoVentana {
 		j.marcador.Jugador++
-		anotó = true
+		j.audio.PlayPunto()
 		if !j.verificarFin() {
 			j.lanzarBola(-1)
 		}
 	}
-	_ = anotó
 }
 
 // verificarFin retorna true si la partida terminó.
 func (j *Juego) verificarFin() bool {
 	if j.marcador.Jugador >= PuntosParaGanar || j.marcador.Rival >= PuntosParaGanar {
 		j.ultimoMarcador = [2]int{j.marcador.Jugador, j.marcador.Rival}
+		j.audio.PlayFin()
 		j.estado = estadoSeleccion
 		return true
 	}

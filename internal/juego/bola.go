@@ -24,11 +24,13 @@ func (j *Juego) moverBola() {
 	if j.bola.Y <= 0 {
 		j.bola.Y = 0
 		j.bola.DY = math.Abs(j.bola.DY)
+		j.audio.PlayRebote()
 	}
 	// Rebote pared inferior
 	if j.bola.Y+TamBola >= AltoVentana {
 		j.bola.Y = AltoVentana - TamBola
 		j.bola.DY = -math.Abs(j.bola.DY)
+		j.audio.PlayRebote()
 	}
 
 	// Rebote paleta jugador
@@ -36,6 +38,7 @@ func (j *Juego) moverBola() {
 		j.bola.X = j.jugador.X + AnchoPaleta
 		j.bola.DX = math.Abs(j.bola.DX)
 		j.ajustarAngleDY(&j.bola, j.jugador.Y)
+		j.audio.PlayRebote()
 	}
 
 	// Rebote paleta rival
@@ -43,6 +46,7 @@ func (j *Juego) moverBola() {
 		j.bola.X = j.palRival.X - TamBola
 		j.bola.DX = -math.Abs(j.bola.DX)
 		j.ajustarAngleDY(&j.bola, j.palRival.Y)
+		j.audio.PlayRebote()
 	}
 }
 
