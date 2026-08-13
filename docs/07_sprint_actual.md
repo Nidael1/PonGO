@@ -24,7 +24,7 @@ tres niveles existen pero no cumplen su definición.
 
 - [x] #1 esquema raíz
 - [x] #2 inicializar módulo Go y agregar Ebitengine
-- [ ] #3 ventana y bucle de juego vacío
+- [x] #3 ventana y bucle de juego vacío
 - [ ] #4 paleta del jugador con flechas
 - [ ] #5 bola con rebotes en bordes y paletas
 - [ ] #6 paleta del rival
