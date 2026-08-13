@@ -2,8 +2,8 @@ Propósito: guardar lo que no está en el sprint actual y el orden en que se con
 
 ## Pendientes
 
-- [ ] #11 corregir ángulos de rebote demasiado planos, si aparecen al jugar
-- [ ] #12 afinar timbre y duración de los tres sonidos
+- [x] #11 corregir ángulos de rebote demasiado planos, si aparecen al jugar
+- [x] #12 afinar timbre y duración de los tres sonidos
 - [x] #13 pausa con la barra espaciadora
 - [x] #14 tabla del último ganador en pantalla de selección
 
