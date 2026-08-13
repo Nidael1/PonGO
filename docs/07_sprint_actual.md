@@ -28,7 +28,7 @@ tres niveles existen pero no cumplen su definición.
 - [x] #4 paleta del jugador con flechas
 - [x] #5 bola con rebotes en bordes y paletas
 - [x] #6 paleta del rival
-- [ ] #7 marcador y fin de partida a dos puntos
+- [x] #7 marcador y fin de partida a dos puntos
 - [ ] #8 pantalla de selección de nivel con marcador final
 - [ ] #9 sonidos sintetizados de rebote, punto y fin
 - [ ] #10 calibrar los valores de los tres niveles

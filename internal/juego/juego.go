@@ -91,6 +91,7 @@ func (j *Juego) updateEnJuego() {
 	j.moverJugador()
 	j.moverRival()
 	j.moverBola()
+	j.verificarPunto()
 }
 
 func (j *Juego) moverRival() {
@@ -99,6 +100,35 @@ func (j *Juego) moverRival() {
 	dir := rival.Decidir(bolaCentroY, rivalCentroY, j.nivel)
 	j.palRival.Y += float64(dir) * rival.Velocidades[j.nivel]
 	j.palRival.Y = clamp(j.palRival.Y, 0, AltoVentana-AltoPaleta)
+}
+
+func (j *Juego) verificarPunto() {
+	anotó := false
+	if j.bola.X+TamBola < 0 {
+		j.marcador.Rival++
+		anotó = true
+		if !j.verificarFin() {
+			j.lanzarBola(1)
+		}
+	}
+	if j.bola.X > AnchoVentana {
+		j.marcador.Jugador++
+		anotó = true
+		if !j.verificarFin() {
+			j.lanzarBola(-1)
+		}
+	}
+	_ = anotó
+}
+
+// verificarFin retorna true si la partida terminó.
+func (j *Juego) verificarFin() bool {
+	if j.marcador.Jugador >= PuntosParaGanar || j.marcador.Rival >= PuntosParaGanar {
+		j.ultimoMarcador = [2]int{j.marcador.Jugador, j.marcador.Rival}
+		j.estado = estadoSeleccion
+		return true
+	}
+	return false
 }
 
 func (j *Juego) moverJugador() {
