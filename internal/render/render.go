@@ -48,6 +48,13 @@ func DibujarJuego(
 	ebitenutil.DebugPrintAt(screen, fmt.Sprintf("%d", pts[1]), anchoVentana/2+20, 10)
 }
 
+func DibujarPausa(screen *ebiten.Image) {
+	ebitenutil.DrawRect(screen, anchoVentana/2-70, altoVentana/2-20, 140, 40,
+		color.RGBA{R: 0, G: 0, B: 0, A: 180})
+	ebitenutil.DebugPrintAt(screen, "-- PAUSA --", anchoVentana/2-44, altoVentana/2-8)
+	ebitenutil.DebugPrintAt(screen, "ESPACIO para continuar", anchoVentana/2-88, altoVentana/2+8)
+}
+
 func DibujarSeleccion(screen *ebiten.Image, nivel int, ultimo [2]int) {
 	screen.Fill(negro)
 

@@ -26,6 +26,7 @@ type estadoJuego int
 const (
 	estadoSeleccion estadoJuego = iota
 	estadoEnJuego
+	estadoPausado
 )
 
 type Juego struct {
@@ -52,7 +53,15 @@ func (j *Juego) Update() error {
 	case estadoSeleccion:
 		j.updateSeleccion()
 	case estadoEnJuego:
-		j.updateEnJuego()
+		if entrada.LeerPausa() {
+			j.estado = estadoPausado
+		} else {
+			j.updateEnJuego()
+		}
+	case estadoPausado:
+		if entrada.LeerPausa() {
+			j.estado = estadoEnJuego
+		}
 	}
 	return nil
 }
@@ -61,7 +70,7 @@ func (j *Juego) Draw(screen *ebiten.Image) {
 	switch j.estado {
 	case estadoSeleccion:
 		render.DibujarSeleccion(screen, j.nivel, j.ultimoMarcador)
-	case estadoEnJuego:
+	case estadoEnJuego, estadoPausado:
 		render.DibujarJuego(
 			screen,
 			j.jugador.X, j.jugador.Y,
@@ -69,6 +78,9 @@ func (j *Juego) Draw(screen *ebiten.Image) {
 			j.bola.X, j.bola.Y,
 			[2]int{j.marcador.Jugador, j.marcador.Rival},
 		)
+		if j.estado == estadoPausado {
+			render.DibujarPausa(screen)
+		}
 	}
 }
 

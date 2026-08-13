@@ -28,6 +28,11 @@ func LeerPaleta() Intencion {
 	return Quieto
 }
 
+// LeerPausa devuelve true si se acaba de presionar la barra espaciadora.
+func LeerPausa() bool {
+	return inpututil.IsKeyJustPressed(ebiten.KeySpace)
+}
+
 // LeerNivel devuelve 1-3 si se acaba de presionar esa tecla, 0 si no.
 func LeerNivel() int {
 	if inpututil.IsKeyJustPressed(ebiten.Key1) {
