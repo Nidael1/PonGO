@@ -22,7 +22,7 @@ tres niveles existen pero no cumplen su definición.
 
 ## Checklist
 
-- [ ] #1 esquema raíz
+- [x] #1 esquema raíz
 - [ ] #2 inicializar módulo Go y agregar Ebitengine
 - [ ] #3 ventana y bucle de juego vacío
 - [ ] #4 paleta del jugador con flechas
