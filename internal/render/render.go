@@ -58,12 +58,22 @@ func DibujarPausa(screen *ebiten.Image) {
 func DibujarSeleccion(screen *ebiten.Image, nivel int, ultimo [2]int) {
 	screen.Fill(negro)
 
-	ebitenutil.DebugPrintAt(screen, "P O N G O", anchoVentana/2-40, 80)
+	ebitenutil.DebugPrintAt(screen, "P O N G O", anchoVentana/2-40, 40)
 
+	// Tabla de última partida
 	if ultimo[0] > 0 || ultimo[1] > 0 {
+		ganador := "MAQUINA"
+		if ultimo[0] > ultimo[1] {
+			ganador = "JUGADOR"
+		}
+		ebitenutil.DebugPrintAt(screen, "--- Ultima partida ---", anchoVentana/2-88, 100)
 		ebitenutil.DebugPrintAt(screen,
-			fmt.Sprintf("Ultimo marcador: %d - %d", ultimo[0], ultimo[1]),
-			anchoVentana/2-70, 140)
+			fmt.Sprintf("  Jugador  %d  -  %d  Maquina", ultimo[0], ultimo[1]),
+			anchoVentana/2-110, 118)
+		ebitenutil.DebugPrintAt(screen,
+			fmt.Sprintf("  Gano: %s", ganador),
+			anchoVentana/2-110, 136)
+		ebitenutil.DebugPrintAt(screen, "----------------------", anchoVentana/2-88, 150)
 	}
 
 	ebitenutil.DebugPrintAt(screen, "Elige nivel:", anchoVentana/2-50, 210)
