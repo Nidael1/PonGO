@@ -3,6 +3,7 @@ package juego
 import (
 	"github.com/Nidael1/PonGO/internal/entrada"
 	"github.com/Nidael1/PonGO/internal/render"
+	"github.com/Nidael1/PonGO/internal/rival"
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -88,7 +89,16 @@ func (j *Juego) iniciarPartida() {
 
 func (j *Juego) updateEnJuego() {
 	j.moverJugador()
+	j.moverRival()
 	j.moverBola()
+}
+
+func (j *Juego) moverRival() {
+	bolaCentroY := j.bola.Y + TamBola/2
+	rivalCentroY := j.palRival.Y + AltoPaleta/2
+	dir := rival.Decidir(bolaCentroY, rivalCentroY, j.nivel)
+	j.palRival.Y += float64(dir) * rival.Velocidades[j.nivel]
+	j.palRival.Y = clamp(j.palRival.Y, 0, AltoVentana-AltoPaleta)
 }
 
 func (j *Juego) moverJugador() {
