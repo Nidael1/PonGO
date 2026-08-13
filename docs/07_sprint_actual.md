@@ -1,6 +1,6 @@
 Propósito: declarar el minisprint en curso, sus tareas y cuándo se da por cerrado.
 
-Sprint 1.0 — abierto el 2026-08-13.
+Sprint 1.0 — abierto el 2026-08-13. Cerrado el 2026-08-13. ✓
 
 ## Objetivo del minisprint
 
